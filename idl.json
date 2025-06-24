@@ -1,0 +1,123 @@
+{
+  "version": "0.1.0",
+  "name": "airdrop",
+  "instructions": [
+    {
+      "name": "initializeAirdrop",
+      "accounts": [
+        { "name": "tokenAtaForProgram", "isMut": true, "isSigner": false },
+        { "name": "data", "isMut": true, "isSigner": false },
+        { "name": "tokenMint", "isMut": false, "isSigner": false },
+        { "name": "tokenAtaForAdmin", "isMut": true, "isSigner": false },
+        { "name": "admin", "isMut": true, "isSigner": true },
+        { "name": "systemProgram", "isMut": false, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false },
+        { "name": "rent", "isMut": false, "isSigner": false }
+      ],
+      "args": [{ "name": "airdropAmount", "type": "u64" }]
+    },
+    {
+      "name": "depositTokens",
+      "accounts": [
+        { "name": "tokenAtaForProgram", "isMut": true, "isSigner": false },
+        { "name": "data", "isMut": true, "isSigner": false },
+        { "name": "tokenMint", "isMut": false, "isSigner": false },
+        { "name": "tokenAtaForAdmin", "isMut": true, "isSigner": false },
+        { "name": "admin", "isMut": true, "isSigner": true },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [{ "name": "amount", "type": "u64" }]
+    },
+    {
+      "name": "claimAirdrop",
+      "accounts": [
+        { "name": "tokenAtaForProgram", "isMut": true, "isSigner": false },
+        { "name": "data", "isMut": true, "isSigner": false },
+        { "name": "userClaimStatus", "isMut": true, "isSigner": false },
+        { "name": "tokenMint", "isMut": false, "isSigner": false },
+        { "name": "tokenAtaForUser", "isMut": true, "isSigner": false },
+        { "name": "user", "isMut": true, "isSigner": true },
+        { "name": "admin", "isMut": true, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false },
+        { "name": "associatedTokenProgram", "isMut": false, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [{ "name": "tokenAtaForProgramBump", "type": "u8" }]
+    },
+    {
+      "name": "claimAirdropWithReferral",
+      "accounts": [
+        { "name": "tokenAtaForProgram", "isMut": true, "isSigner": false },
+        { "name": "data", "isMut": true, "isSigner": false },
+        { "name": "userClaimStatus", "isMut": true, "isSigner": false },
+        { "name": "referrerClaimStatus", "isMut": true, "isSigner": false },
+        { "name": "tokenMint", "isMut": false, "isSigner": false },
+        { "name": "tokenAtaForUser", "isMut": true, "isSigner": false },
+        { "name": "tokenAtaForReferrer", "isMut": true, "isSigner": false },
+        { "name": "user", "isMut": true, "isSigner": true },
+        { "name": "admin", "isMut": true, "isSigner": false },
+        { "name": "referrer", "isMut": false, "isSigner": false },
+        { "name": "tokenProgram", "isMut": false, "isSigner": false },
+        { "name": "associatedTokenProgram", "isMut": false, "isSigner": false },
+        { "name": "systemProgram", "isMut": false, "isSigner": false }
+      ],
+      "args": [
+        { "name": "tokenAtaForProgramBump", "type": "u8" },
+        { "name": "referrer", "type": "publicKey" }
+      ]
+    },
+    {
+      "name": "getUserStatus",
+      "accounts": [
+        { "name": "userClaimStatus", "isMut": false, "isSigner": false },
+        { "name": "user", "isMut": false, "isSigner": false }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Data",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "admin", "type": "publicKey" },
+          { "name": "totalTokens", "type": "u64" },
+          { "name": "tokensDistributed", "type": "u64" },
+          { "name": "totalReferrals", "type": "u64" },
+          { "name": "referralTokensDistributed", "type": "u64" },
+          { "name": "totalParticipants", "type": "u64" }
+        ]
+      }
+    },
+    {
+      "name": "UserClaimStatus",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "user", "type": "publicKey" },
+          { "name": "hasClaimed", "type": "bool" },
+          { "name": "claimTimestamp", "type": "i64" },
+          { "name": "referrer", "type": { "option": "publicKey" } },
+          { "name": "referralsMade", "type": "u64" },
+          { "name": "totalReferralBonus", "type": "u64" }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    { "code": 6000, "name": "Overflow", "msg": "Arithmetic overflow" },
+    { "code": 6001, "name": "InvalidAdmin", "msg": "Invalid admin" },
+    {
+      "code": 6002,
+      "name": "AlreadyClaimed",
+      "msg": "Already claimed airdrop"
+    },
+    { "code": 6003, "name": "InvalidReferrer", "msg": "Invalid referrer" },
+    {
+      "code": 6004,
+      "name": "CannotReferYourself",
+      "msg": "Cannot refer yourself"
+    }
+  ]
+}
