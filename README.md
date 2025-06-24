@@ -2,6 +2,8 @@
 
 Build and Deploy Solana SPL Token Airdrop DApp with Referral Program | Rust + Anchor + Next.js + Web3.js
 
+In this project, you'll learn how to build and deploy a fully-functional Solana SPL Token Airdrop DApp with a powerful referral program using Rust and the Anchor framework for smart contracts, and Next.js for the frontend. We'll use Web3.js to interact with the Solana blockchain and distribute tokens securely and efficiently.
+
 ## Project Overview
 
 ![alt text](https://www.daulathussain.com/wp-content/uploads/2025/06/Build-and-Deploy-Solana-SPL-Token-Airdrop-DApp-with-Referral-Program-Rust-Anchor-Next.js-Web3.jpeg)
