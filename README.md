@@ -16,7 +16,7 @@ Kindly follow the following Instructions to run the project in your system and i
 
 #### Setup Video
 
-- [Final Code Setup video]()
+- [Final Code Setup video](https://youtu.be/B4nQn6EwBeM?si=v4Me1l2OBQdLtIon)
 
 In this project, you'll learn how to build and deploy a fully-functional Solana SPL Token Airdrop DApp with a powerful referral program using Rust and the Anchor framework for smart contracts, and Next.js for the frontend. We'll use Web3.js to interact with the Solana blockchain and distribute tokens securely and efficiently.
 
